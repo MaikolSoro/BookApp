@@ -14,10 +14,13 @@ import com.example.bookapp.components.BookDetailCard
 import com.example.bookapp.components.ItemBookList
 import com.example.bookapp.components.TextInputField
 import com.example.bookapp.components.TopBar
+import com.example.bookapp.navigation.NavGraph
 import com.example.bookapp.ui.theme.BookAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 
 @ExperimentalComposeUiApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,28 +28,7 @@ class MainActivity : ComponentActivity() {
             BookAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    val input = remember {
-                        mutableStateOf("")
-                    }
-                    LazyColumn() {
-                        item {
-                            TopBar(title = "Book Description")
-                        }
-                        item {
-                            TextInputField(
-                                label = "Search for books...",
-                                value = input.value,
-                                onValueChanged = {
-                                    input.value = it
-                                })
-                        }
-                        item {
-                            ItemBookList()
-                        }
-                        item {
-                            BookDetailCard()
-                        }
-                    }
+                    NavGraph()
 
                 }
             }
@@ -54,15 +36,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     BookAppTheme {
-        Greeting("Android")
     }
 }
