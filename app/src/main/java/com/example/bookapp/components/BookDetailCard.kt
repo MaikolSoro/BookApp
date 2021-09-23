@@ -16,9 +16,14 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.bookapp.ui.theme.text
 import com.example.bookapp.ui.theme.typography
+import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
 fun BookDetailCard(
+    title: String,
+    authors: List<String>,
+    thumbnailUrl: String,
+    categories: List<String>
 ) {
     // Transparent white bg
     Box(
@@ -40,13 +45,19 @@ fun BookDetailCard(
                 .background(MaterialTheme.colors.onSurface),
         )
         // Content
-        BookImageContentView()
+        BookImageContentView(title, authors, thumbnailUrl, categories)
+
 
     }
 }
 
 @Composable
-fun BookImageContentView() {
+fun BookImageContentView(
+    title: String,
+    authors: List<String>,
+    thumbnailUrl: String,
+    categories: List<String>
+) {
     // content
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -83,6 +94,11 @@ fun BookImageContentView() {
                 color = text.copy(0.7F)
             )
             Spacer(modifier = Modifier.height(12.dp))
+            FlowRow {
+                categories.forEach {
+                    ChipView(category = it)
+                }
+            }
         }
     }
 }
