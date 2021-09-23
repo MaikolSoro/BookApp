@@ -12,6 +12,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.bookapp.components.ItemBookList
 import com.example.bookapp.components.TextInputField
+import com.example.bookapp.components.TopBar
 import com.example.bookapp.ui.theme.BookAppTheme
 
 
@@ -27,6 +28,9 @@ class MainActivity : ComponentActivity() {
                         mutableStateOf("")
                     }
                     LazyColumn() {
+                        item {
+                            TopBar(title = "Book Description")
+                        }
                         item {
                             TextInputField(
                                 label = "Search for books...",
