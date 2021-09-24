@@ -2,11 +2,13 @@
   <img src="https://user-images.githubusercontent.com/46753453/134748365-ed3daade-eefe-46ab-9054-2d883169a2d1.png"/>
 </p>
 
-# BookApp
-BookApp Android application is built with Modern Android application development tools or libraries. Aim of this project is to showcase Good practice implementation of Android application development with proper architecture design. Dedicated to all Android Developers with ❤️.
+# BookApp 📱
+_**BookApp Android application**_ is built with _Modern Android application development_ tools or libraries.
+Aim of this project is to showcase Good practice implementation of Android application development with proper architecture design. 
+_Dedicated to all Android Developers with_ ❤️..
 
 ## About this project 💡
-BookApp is a sample application built to demonstrate the use of Jetpack Compose UI Toolkit with Modern android architecture components!
+BookApp Android app is available with _traditional approach using Navigation Architecture_ as well as modern UI development toolkit i.e. _Jetpack Compose UI_.
 
 ## Built with 🛠
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
