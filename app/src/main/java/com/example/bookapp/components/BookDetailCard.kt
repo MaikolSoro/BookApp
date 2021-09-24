@@ -19,12 +19,13 @@ import com.example.bookapp.ui.theme.typography
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
-fun BookDetailCard(
+fun BookDetailsCard(
     title: String,
     authors: List<String>,
     thumbnailUrl: String,
     categories: List<String>
 ) {
+
     // Transparent white bg
     Box(
         Modifier
@@ -44,6 +45,7 @@ fun BookDetailCard(
                 .clip(RoundedCornerShape(12.dp))
                 .background(MaterialTheme.colors.onSurface),
         )
+
         // Content
         BookImageContentView(title, authors, thumbnailUrl, categories)
 
@@ -102,3 +104,6 @@ fun BookImageContentView(
         }
     }
 }
+/**
+ * BookApp is a sample application built to demonstrate the use of Jetpack compose Declarative UI Toolkit with MVVM Architecture for Android 🍄
+ */

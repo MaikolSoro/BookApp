@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.bookapp.ui.theme.primary
@@ -40,19 +41,22 @@ fun ItemBookList(
 
         // Row - Image + Content
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colors.onSurface),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Image
             Image(
                 painter = rememberImagePainter(
-                    data = thumbnailUrl,
+                    data = thumbnailUrl
                 ),
                 contentDescription = null,
                 modifier = Modifier
                     .size(98.dp, 145.dp)
-                    .padding(16.dp)
+                    .padding(16.dp),
+                contentScale = ContentScale.Inside
             )
             Spacer(modifier = Modifier.width(16.dp))
 
@@ -82,7 +86,7 @@ fun ChipView(category: String) {
             .padding(start = 12.dp, end = 12.dp, top = 5.dp, bottom = 5.dp),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Minimalism", style = typography.caption, color = primary)
+        Text(text = category, style = typography.caption, color = primary)
     }
 }
 

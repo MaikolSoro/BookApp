@@ -82,7 +82,7 @@ fun BookList(bookList: List<BookItem>, actions: MainActions) {
                 text = "Famous books",
                 style = MaterialTheme.typography.subtitle1,
                 color = MaterialTheme.colors.onPrimary,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Start
             )
         }
 

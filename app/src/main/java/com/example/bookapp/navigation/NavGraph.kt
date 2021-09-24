@@ -32,7 +32,7 @@ fun NavGraph() {
         // Home
         composable(Screen.BookList.route) {
             val viewModel: MainViewModel = viewModel(
-                    factory = HiltViewModelFactory(LocalContext.current, it)
+                factory = HiltViewModelFactory(LocalContext.current, it)
             )
             viewModel.getAllBooks(context = context)
             BookListScreen(viewModel, actions)
@@ -41,14 +41,14 @@ fun NavGraph() {
 
         // Task Details
         composable(
-                "${Screen.Details.route}/{id}",
-                arguments = listOf(navArgument(EndPoints.ID) { type = NavType.StringType })
+            "${Screen.Details.route}/{id}",
+            arguments = listOf(navArgument(EndPoints.ID) { type = NavType.StringType })
         ) {
             val viewModel = hiltViewModel<MainViewModel>(it)
             val isbnNo = it.arguments?.getString(EndPoints.ID)
-                    ?: throw IllegalStateException("'Book ISBN No' shouldn't be null")
+                ?: throw IllegalStateException("'Book ISBN No' shouldn't be null")
 
-            //viewModel.getBookByID(context = context, isbnNO = isbnNo)
+            viewModel.getBookByID(context = context, isbnNO = isbnNo)
             BookDetailsScreen(viewModel, actions)
         }
     }
