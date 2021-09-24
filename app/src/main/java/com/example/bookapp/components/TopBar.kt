@@ -19,7 +19,9 @@ fun TopBar(title: String) {
     Row(
         modifier = Modifier
             .fillMaxHeight()
-            .padding(start = 16.dp, end = 16.dp), horizontalArrangement = Arrangement.Start, verticalAlignment = Alignment.CenterVertically
+            .padding(start = 16.dp, end = 16.dp),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             imageVector = Icons.Default.ArrowBack,

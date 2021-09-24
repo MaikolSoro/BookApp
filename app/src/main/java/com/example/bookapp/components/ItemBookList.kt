@@ -17,38 +17,42 @@ import coil.compose.rememberImagePainter
 import com.example.bookapp.ui.theme.primary
 import com.example.bookapp.ui.theme.text
 import com.example.bookapp.ui.theme.typography
+import com.example.bookapp.utils.coloredShadow
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
 fun ItemBookList(
-        title: String,
-        author: String,
-        thumbnailUrl: String,
-        categories: List<String>,
-        onItemClick: () -> Unit
+    title: String,
+    author: String,
+    thumbnailUrl: String,
+    categories: List<String>,
+    onItemClick: () -> Unit
 ) {
     Card(
-            modifier = Modifier
-                    .clickable(onClick = onItemClick)
-                    .background(MaterialTheme.colors.onSurface)
-                    .padding(16.dp)
+        modifier = Modifier
+            .clickable(onClick = onItemClick)
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .background(MaterialTheme.colors.background)
+            .clip(RoundedCornerShape(20.dp))
+            .padding(12.dp)
     ) {
 
         // Row - Image + Content
         Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             // Image
             Image(
-                    painter = rememberImagePainter(
-                            data = thumbnailUrl,
-                    ),
-                    contentDescription = null,
-                    modifier = Modifier
-                            .size(98.dp, 145.dp)
-                            .padding(12.dp)
+                painter = rememberImagePainter(
+                    data = thumbnailUrl,
+                ),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(98.dp, 145.dp)
+                    .padding(16.dp)
             )
             Spacer(modifier = Modifier.width(16.dp))
 
@@ -72,11 +76,11 @@ fun ItemBookList(
 @Composable
 fun ChipView(category: String) {
     Box(
-            modifier = Modifier
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(primary.copy(.10f))
-                    .padding(start = 12.dp, end = 12.dp, top = 5.dp, bottom = 5.dp),
-            contentAlignment = Alignment.Center
+        modifier = Modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(primary.copy(.10f))
+            .padding(start = 12.dp, end = 12.dp, top = 5.dp, bottom = 5.dp),
+        contentAlignment = Alignment.Center
     ) {
         Text(text = "Minimalism", style = typography.caption, color = primary)
     }

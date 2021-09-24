@@ -2,6 +2,7 @@ package com.example.bookapp.view
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -44,50 +45,59 @@ fun BookListScreen(viewModel: MainViewModel, actions: MainActions) {
 @Composable
 fun BookList(bookList: List<BookItem>, actions: MainActions) {
 
-    val input = remember {
+    val search = remember {
         mutableStateOf("")
     }
 
     val listState = rememberLazyListState()
 
-    LazyColumn(state = listState, contentPadding = PaddingValues(top = 24.dp, bottom = 24.dp), modifier = Modifier.background(MaterialTheme.colors.background)) {
+    LazyColumn(
+        state = listState,
+        contentPadding = PaddingValues(top = 24.dp, bottom = 24.dp),
+        modifier = Modifier.background(MaterialTheme.colors.background)
+    ) {
         // title
         item {
             Text(
-                    text = "Explore thousands of  \nbooks in go",
-                    style = MaterialTheme.typography.h5,
-                    textAlign = TextAlign.Start,
-                    color = MaterialTheme.colors.onPrimary,
-                    maxLines = 2,
-                    modifier = Modifier.padding(start = 16.dp, end = 24.dp, bottom = 24.dp),
+                text = "Explore thousands of  \nbooks in go",
+                style = MaterialTheme.typography.h5,
+                textAlign = TextAlign.Start,
+                color = MaterialTheme.colors.primaryVariant,
+                maxLines = 2,
+                modifier = Modifier.padding(start = 16.dp, end = 24.dp, bottom = 24.dp),
             )
         }
         // search
         item {
             TextInputField(
-                    label = stringResource(R.string.text_search),
-                    value = input.value, onValueChanged = {
-                     it
-                input.value = it
-            })
+                label = stringResource(R.string.text_search),
+                value = search.value, onValueChanged = {
+                    it
+                    search.value = it
+                })
         }
         // Search result title
         item {
             Text(
-                    text = "Famous books",
-                    style = MaterialTheme.typography.subtitle1,
-                    color = MaterialTheme.colors.onPrimary,
-                    textAlign = TextAlign.Center
+                text = "Famous books",
+                style = MaterialTheme.typography.subtitle1,
+                color = MaterialTheme.colors.onPrimary,
+                textAlign = TextAlign.Center
             )
         }
 
         // All books list view
-        items(bookList) { book ->
-            Log.d("books","books are ${book.title}")
-            ItemBookList(book.title, book.authors.toString(), book.thumbnailUrl, book.categories, onItemClick = {
-                actions.gotoBookDetails.invoke(book.isbn)
+        items(bookList.filter { it.title.contains(search.value, ignoreCase = true) }) { book ->
+            Log.d("books", "books are ${book.title}")
+            ItemBookList(
+                book.title,
+                book.authors.toString(),
+                book.thumbnailUrl,
+                book.categories,
+                onItemClick = {
+                    actions.gotoBookDetails.invoke(book.isbn)
 
-            })
+                })
         }
 
     }

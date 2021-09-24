@@ -64,9 +64,9 @@ fun BookImageContentView(
         // image
         Image(
             painter = rememberImagePainter(
-                data = "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg"
+                data = thumbnailUrl
             ),
-            contentDescription = "Maikol",
+            contentDescription = title,
             modifier = Modifier
                 .size(240.dp, 140.dp),
         )
@@ -81,14 +81,14 @@ fun BookImageContentView(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "title",
+                text = title,
                 style = typography.h6,
                 textAlign = TextAlign.Center,
                 color = text
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = "Maikol Soro",
+                text = authors.toString(),
                 style = typography.caption,
                 textAlign = TextAlign.Center,
                 color = text.copy(0.7F)
